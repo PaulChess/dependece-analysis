@@ -1,3 +1,4 @@
+// import Vue from 'vue'
 import Vue from 'vue'
 import App from './App.vue'
 import './styles/reset.css'
@@ -5,8 +6,6 @@ import { initTheme } from '@atom/b2c-tokens'
 import "@atom/b2c-tokens/dist/variables_750_rem.css"
 import '@atom/atom-icons/icons/arrow-right'
 import '@exposure-lib/polyfill'
-import AtomUI from '@atom/atom-ui';
-import * as AtomUI2 from '@atom/atom-ui'
 import { Button, Tooltip, Icon, BottomSheet, Cell, Tabs as AtomTab } from '@atom/atom-ui'
 import { Button as VantButton } from 'vant'
 

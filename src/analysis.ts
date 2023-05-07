@@ -1,22 +1,10 @@
 import type { Node, SourceFile } from 'typescript'
 import tsCompiler from 'typescript'
 import { scanFileTs } from './file'
-import { isTargetLib, isTrueArray } from './utils'
+import { getNodeType, isTargetLib, isTrueArray } from './utils'
 import { parseTs } from './parser'
-
-interface NodeInfo {
-  name: string
-  origin: string | null
-  symbolPos: number
-  symbolEnd: number
-  identifierPos: number
-  identifierEnd: number
-  line: number
-}
-
-interface ImportItems {
-  [key: string]: Omit<NodeInfo, 'name'>
-}
+import { IMPORT_TYPE } from './constant'
+import type { ImportItems, ImportType, NodeInfo } from './types'
 
 export class CodeAnalysis {
   constructor() {}
@@ -26,6 +14,8 @@ export class CodeAnalysis {
 
     function dealImports(nodeInfo: NodeInfo) {
       importItems[nodeInfo.name] = {
+        importType: nodeInfo.importType,
+        nodeType: nodeInfo.nodeType,
         origin: nodeInfo.origin,
         symbolPos: nodeInfo.symbolPos,
         symbolEnd: nodeInfo.symbolEnd,
@@ -46,8 +36,11 @@ export class CodeAnalysis {
           if (node.importClause) {
             // default 直接导入场景
             if (node.importClause.name) {
+              const importType = IMPORT_TYPE.DEFAULT as ImportType
               const nodeInfo = {
                 name: node.importClause.name.escapedText as string,
+                nodeType: getNodeType(node, importType),
+                importType,
                 origin: null,
                 symbolPos: node.importClause.pos,
                 symbolEnd: node.importClause.end,
@@ -65,8 +58,11 @@ export class CodeAnalysis {
                   const elementsArr = node.importClause.namedBindings.elements
                   elementsArr.forEach((element) => {
                     if (tsCompiler.isImportSpecifier(element)) {
+                      const importType = element.propertyName ? IMPORT_TYPE.NAMESPACE_AS as ImportType : IMPORT_TYPE.NAMESPACE as ImportType
                       const nodeInfo = {
                         name: element.name.escapedText as string,
+                        nodeType: getNodeType(node, importType),
+                        importType,
                         origin: element.propertyName ? element.propertyName.escapedText as string : null,
                         symbolPos: element.pos,
                         symbolEnd: element.end,
@@ -81,8 +77,11 @@ export class CodeAnalysis {
               }
               // * 全量导入as场景
               if (tsCompiler.isNamespaceImport(node.importClause.namedBindings) && node.importClause.namedBindings.name) {
+                const importType = IMPORT_TYPE.DEFAULT_AS as ImportType
                 const nodeInfo = {
                   name: node.importClause.namedBindings.name.escapedText as string,
+                  nodeType: getNodeType(node, importType),
+                  importType,
                   origin: '*',
                   symbolPos: node.importClause.namedBindings.pos,
                   symbolEnd: node.importClause.namedBindings.end,
@@ -114,6 +113,7 @@ export class CodeAnalysis {
 
         if (ast) {
           const importItems = this._findImportItems(ast)
+          // console.log(importItems)
 
           if (Object.keys(importItems).length > 0)
             this._dealAST()
