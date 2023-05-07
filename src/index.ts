@@ -1,2 +1,5 @@
-export const one = 1
-export const two = 2
+import { CodeAnalysis } from './analysis'
+
+const codeAnalysis = new CodeAnalysis()
+
+codeAnalysis.analysis()
