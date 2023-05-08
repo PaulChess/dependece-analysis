@@ -50,9 +50,7 @@ export class CodeAnalysis {
               }
               dealImports(nodeInfo)
             }
-            // 局部导入场景
             if (node.importClause.namedBindings) {
-              // 拓展导入场景，包括 as 情况
               if (tsCompiler.isNamedImports(node.importClause.namedBindings)) {
                 if (node.importClause.namedBindings.elements && node.importClause.namedBindings.elements.length > 0) {
                   const elementsArr = node.importClause.namedBindings.elements
@@ -75,7 +73,6 @@ export class CodeAnalysis {
                   })
                 }
               }
-              // * 全量导入as场景
               if (tsCompiler.isNamespaceImport(node.importClause.namedBindings) && node.importClause.namedBindings.name) {
                 const importType = IMPORT_TYPE.DEFAULT_AS as ImportType
                 const nodeInfo = {
@@ -102,7 +99,58 @@ export class CodeAnalysis {
     return importItems
   }
 
-  _dealAST() {}
+  _getUseCallsList(ast: SourceFile) {
+    const useCalls: string[] = []
+
+    function walk(node: Node) {
+      tsCompiler.forEachChild(node, walk)
+
+      if (tsCompiler.isCallExpression(node)) {
+        const expression = node.expression
+        if (tsCompiler.isPropertyAccessExpression(expression) && expression.name.text === 'use')
+          useCalls.push(node.arguments[0].getText())
+      }
+    }
+
+    walk(ast)
+
+    return useCalls
+  }
+
+  _getRealUsedComponentsList(componentItems: ImportItems, useCallsList: string[]) {
+    const realUsedComponentsList: string[] = []
+
+    Object.keys(componentItems).forEach((key) => {
+      if (useCallsList.includes(key))
+        realUsedComponentsList.push(key)
+    })
+
+    return realUsedComponentsList
+  }
+
+  _getVueItems(importItems: ImportItems) {
+    const vueItems: ImportItems = {}
+
+    Object.keys(importItems).forEach((key) => {
+      const item = importItems[key]
+      if ((key === 'createApp' || key === 'Vue') && item.nodeType === 'vue')
+        vueItems[key] = item
+    })
+
+    return vueItems
+  }
+
+  _getComponentItems(importItems: ImportItems) {
+    const componentItems: ImportItems = {}
+
+    Object.keys(importItems).forEach((key) => {
+      const item = importItems[key]
+      if (item.nodeType === 'component' || item.nodeType === 'componentLib')
+        componentItems[key] = item
+    })
+
+    return componentItems
+  }
 
   analysis() {
     const tartgetAnalysisFile = scanFileTs('example/src/main.ts')
@@ -113,10 +161,13 @@ export class CodeAnalysis {
 
         if (ast) {
           const importItems = this._findImportItems(ast)
-          // console.log(importItems)
 
-          if (Object.keys(importItems).length > 0)
-            this._dealAST()
+          if (Object.keys(importItems).length > 0) {
+            const componentItems = this._getComponentItems(importItems)
+            const useCallsList = this._getUseCallsList(ast)
+            const realUsedComponentList = this._getRealUsedComponentsList(componentItems, useCallsList)
+            // console.log(realUsedComponentList)
+          }
         }
       })
     }

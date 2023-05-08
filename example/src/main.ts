@@ -1,4 +1,3 @@
-// import Vue from 'vue'
 import Vue from 'vue'
 import App from './App.vue'
 import './styles/reset.css'
@@ -11,12 +10,15 @@ import { Button as VantButton } from 'vant'
 
 initTheme()
 
-Vue.use(Button)
-  .use(Tooltip)
+function hello () {
+  const Vue = '1111';
+}
+
+Vue.use(Button).use(Tooltip)
   .use(Icon)
   .use(BottomSheet)
   .use(Cell)
-Vue.use(VantButton)
+  .use(VantButton) 
 
 Vue.config.productionTip = false
 
