@@ -1,3 +1,22 @@
+export interface ChildComponentItem {
+  componentName: string
+  usages?: number
+}
+
+export type ChildComponents = ChildComponentItem[]
+
+export interface LibraryInfoItem {
+  libraryName: string
+  version: string
+  usages?: number
+  components: ChildComponents
+}
+
+export interface ComponentData {
+  projectRepo: string
+  librariyInfoList: LibraryInfoItem[]
+}
+
 export interface NodeInfo {
   name: string
   origin: string | null

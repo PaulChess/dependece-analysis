@@ -1,58 +1,68 @@
 lockfileVersion: '6.0'
 
-importers:
+dependencies:
+  glob:
+    specifier: ^10.2.2
+    version: miniapp.10jqka.com.cn/glob@10.2.2
+  lodash-es:
+    specifier: ^4.17.21
+    version: miniapp.10jqka.com.cn/lodash-es@4.17.21
+  pkg-dir:
+    specifier: ^7.0.0
+    version: miniapp.10jqka.com.cn/pkg-dir@7.0.0
+  typescript:
+    specifier: ^5.0.3
+    version: 5.0.3
 
-  .:
-    dependencies:
-      glob:
-        specifier: ^10.2.2
-        version: miniapp.10jqka.com.cn/glob@10.2.2
-      typescript:
-        specifier: ^5.0.3
-        version: 5.0.3
-    devDependencies:
-      '@antfu/eslint-config':
-        specifier: ^0.38.4
-        version: 0.38.4(eslint@8.37.0)(typescript@5.0.3)
-      '@antfu/ni':
-        specifier: ^0.21.2
-        version: 0.21.2
-      '@antfu/utils':
-        specifier: ^0.7.2
-        version: 0.7.2
-      '@types/node':
-        specifier: ^18.15.11
-        version: 18.15.11
-      bumpp:
-        specifier: ^9.1.0
-        version: 9.1.0
-      eslint:
-        specifier: ^8.37.0
-        version: 8.37.0
-      esno:
-        specifier: ^0.16.3
-        version: 0.16.3
-      lint-staged:
-        specifier: ^13.2.0
-        version: 13.2.0
-      pnpm:
-        specifier: ^8.1.1
-        version: 8.1.1
-      rimraf:
-        specifier: ^4.4.1
-        version: 4.4.1
-      simple-git-hooks:
-        specifier: ^2.8.1
-        version: 2.8.1
-      unbuild:
-        specifier: ^1.2.0
-        version: 1.2.0
-      vite:
-        specifier: ^4.2.1
-        version: 4.2.1(@types/node@18.15.11)
-      vitest:
-        specifier: ^0.29.8
-        version: 0.29.8
+devDependencies:
+  '@antfu/eslint-config':
+    specifier: ^0.38.4
+    version: 0.38.4(eslint@8.37.0)(typescript@5.0.3)
+  '@antfu/ni':
+    specifier: ^0.21.2
+    version: 0.21.2
+  '@antfu/utils':
+    specifier: ^0.7.2
+    version: 0.7.2
+  '@types/lodash':
+    specifier: ^4.14.194
+    version: miniapp.10jqka.com.cn/@types/lodash@4.14.194
+  '@types/lodash-es':
+    specifier: ^4.17.7
+    version: miniapp.10jqka.com.cn/@types/lodash-es@4.17.7
+  '@types/node':
+    specifier: ^18.15.11
+    version: 18.15.11
+  bumpp:
+    specifier: ^9.1.0
+    version: 9.1.0
+  eslint:
+    specifier: ^8.37.0
+    version: 8.37.0
+  esno:
+    specifier: ^0.16.3
+    version: 0.16.3
+  lint-staged:
+    specifier: ^13.2.0
+    version: 13.2.0
+  pnpm:
+    specifier: ^8.1.1
+    version: 8.1.1
+  rimraf:
+    specifier: ^4.4.1
+    version: 4.4.1
+  simple-git-hooks:
+    specifier: ^2.8.1
+    version: 2.8.1
+  unbuild:
+    specifier: ^1.2.0
+    version: 1.2.0
+  vite:
+    specifier: ^4.2.1
+    version: 4.2.1(@types/node@18.15.11)
+  vitest:
+    specifier: ^0.29.8
+    version: 0.29.8
 
 packages:
 
@@ -1662,7 +1672,7 @@ packages:
       indent-string: 4.0.0
       is-builtin-module: 3.2.0
       jsesc: 3.0.2
-      lodash: 4.17.21
+      lodash: miniapp.10jqka.com.cn/lodash@4.17.21
       pluralize: 8.0.0
       read-pkg-up: 7.0.1
       regexp-tree: 0.1.24
@@ -1713,7 +1723,7 @@ packages:
     dependencies:
       debug: 4.3.4
       eslint: 8.37.0
-      lodash: 4.17.21
+      lodash: miniapp.10jqka.com.cn/lodash@4.17.21
       natural-compare: 1.4.0
       yaml-eslint-parser: 1.2.0
     transitivePeerDependencies:
@@ -1927,14 +1937,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       to-regex-range: 5.0.1
-    dev: true
-
-  /find-up@4.1.0:
-    resolution: {integrity: sha512-PpOwAdQ/YlXQ2vj8a3h8IipDuYRi3wceVQQGYWxNINccq40Anw7BlsEXCMbt1Zt+OLA6Fq9suIpIWD0OsnISlw==}
-    engines: {node: '>=8'}
-    dependencies:
-      locate-path: 5.0.0
-      path-exists: 4.0.0
     dev: true
 
   /find-up@5.0.0:
@@ -2570,26 +2572,15 @@ packages:
     engines: {node: '>=14'}
     dev: true
 
-  /locate-path@5.0.0:
-    resolution: {integrity: sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==}
-    engines: {node: '>=8'}
-    dependencies:
-      p-locate: 4.1.0
-    dev: true
-
   /locate-path@6.0.0:
     resolution: {integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==}
     engines: {node: '>=10'}
     dependencies:
-      p-locate: 5.0.0
+      p-locate: miniapp.10jqka.com.cn/p-locate@5.0.0
     dev: true
 
   /lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
-    dev: true
-
-  /lodash@4.17.21:
-    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
     dev: true
 
   /log-update@4.0.0:
@@ -2881,39 +2872,18 @@ packages:
       word-wrap: 1.2.3
     dev: true
 
-  /p-limit@2.3.0:
-    resolution: {integrity: sha512-//88mFWSJx8lxCzwdAABTJL2MyWB12+eIY7MDL2SqLmAkeKU9qxRvWuSyTjm3FUmpBEMuFfckAIqEaVGUDxb6w==}
-    engines: {node: '>=6'}
-    dependencies:
-      p-try: 2.2.0
-    dev: true
-
   /p-limit@3.1.0:
     resolution: {integrity: sha512-TYOanM3wGwNGsZN2cVTYPArw454xnXj5qmWF1bEoAc4+cU/ol7GVh7odevjp1FNHduHc3KZMcFduxU5Xc6uJRQ==}
     engines: {node: '>=10'}
     dependencies:
-      yocto-queue: 0.1.0
+      yocto-queue: miniapp.10jqka.com.cn/yocto-queue@0.1.0
     dev: true
 
   /p-limit@4.0.0:
     resolution: {integrity: sha512-5b0R4txpzjPWVw/cXXUResoD4hb6U/x9BH08L7nw+GN1sezDzPdxeRvpc9c433fZhBan/wusjbCsqwqm4EIBIQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
-      yocto-queue: 1.0.0
-    dev: true
-
-  /p-locate@4.1.0:
-    resolution: {integrity: sha512-R79ZZ/0wAxKGu3oYMlz8jy/kbhsNrS7SKZ7PxEHBgJ5+F2mtFW2fK2cOtBh1cHYkQsbzFV7I+EoRKe6Yt0oK7A==}
-    engines: {node: '>=8'}
-    dependencies:
-      p-limit: 2.3.0
-    dev: true
-
-  /p-locate@5.0.0:
-    resolution: {integrity: sha512-LaNjtRWUBY++zB5nE/NwcaoMylSPk+S+ZHNB1TzdbMJMny6dynpAGt7X/tl/QYq3TIeE6nxHppbo2LGymrG5Pw==}
-    engines: {node: '>=10'}
-    dependencies:
-      p-limit: 3.1.0
+      yocto-queue: miniapp.10jqka.com.cn/yocto-queue@1.0.0
     dev: true
 
   /p-map@4.0.0:
@@ -3099,7 +3069,7 @@ packages:
     resolution: {integrity: sha512-zK0TB7Xd6JpCLmlLmufqykGE+/TlOePD6qKClNW7hHDKFh/J7/7gCWGR7joEQEW1bKq3a3yUZSObOoWLFQ4ohg==}
     engines: {node: '>=8'}
     dependencies:
-      find-up: 4.1.0
+      find-up: miniapp.10jqka.com.cn/find-up@4.1.0
       read-pkg: 5.2.0
       type-fest: 0.8.1
     dev: true
@@ -3826,7 +3796,7 @@ packages:
       eslint-visitor-keys: 3.4.0
       espree: 9.5.1
       esquery: 1.5.0
-      lodash: 4.17.21
+      lodash: miniapp.10jqka.com.cn/lodash@4.17.21
       semver: 7.3.8
     transitivePeerDependencies:
       - supports-color
@@ -3907,23 +3877,13 @@ packages:
     engines: {node: ^14.17.0 || >=16.0.0}
     dependencies:
       eslint-visitor-keys: 3.4.0
-      lodash: 4.17.21
+      lodash: miniapp.10jqka.com.cn/lodash@4.17.21
       yaml: 2.2.1
     dev: true
 
   /yaml@2.2.1:
     resolution: {integrity: sha512-e0WHiYql7+9wr4cWMx3TVQrNwejKaEe7/rHNmQmqRjazfOP5W8PB6Jpebb5o6fIapbz9o9+2ipcaTM2ZwDI6lw==}
     engines: {node: '>= 14'}
-    dev: true
-
-  /yocto-queue@0.1.0:
-    resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
-    engines: {node: '>=10'}
-    dev: true
-
-  /yocto-queue@1.0.0:
-    resolution: {integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==}
-    engines: {node: '>=12.20'}
     dev: true
 
   miniapp.10jqka.com.cn/@babel/code-frame@7.21.4:
@@ -4199,6 +4159,20 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
+
+  miniapp.10jqka.com.cn/@types/lodash-es@4.17.7:
+    resolution: {integrity: sha512-z0ptr6UI10VlU6l5MYhGwS4mC8DZyYer2mCoyysZtSF7p26zOX8UpbrV0YpNYLGS8K4PUFIyEr62IMFFjveSiQ==, registry: http://112.90.157.23/, tarball: https://miniapp.10jqka.com.cn/npmserver/@types%2flodash-es/-/lodash-es-4.17.7.tgz}
+    name: '@types/lodash-es'
+    version: 4.17.7
+    dependencies:
+      '@types/lodash': miniapp.10jqka.com.cn/@types/lodash@4.14.194
+    dev: true
+
+  miniapp.10jqka.com.cn/@types/lodash@4.14.194:
+    resolution: {integrity: sha512-r22s9tAS7imvBt2lyHC9B8AGwWnXaYb1tY09oyLkXDs4vArpYJzw09nj8MLx5VfciBPGIb+ZwG0ssYnEPJxn/g==, registry: http://112.90.157.23/, tarball: https://miniapp.10jqka.com.cn/npmserver/@types%2flodash/-/lodash-4.14.194.tgz}
+    name: '@types/lodash'
+    version: 4.14.194
+    dev: true
 
   miniapp.10jqka.com.cn/ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==, registry: http://112.90.157.23/, tarball: https://miniapp.10jqka.com.cn/npmserver/ansi-regex/-/ansi-regex-5.0.1.tgz}
@@ -4539,6 +4513,26 @@ packages:
     dev: true
     optional: true
 
+  miniapp.10jqka.com.cn/find-up@4.1.0:
+    resolution: {integrity: sha512-PpOwAdQ/YlXQ2vj8a3h8IipDuYRi3wceVQQGYWxNINccq40Anw7BlsEXCMbt1Zt+OLA6Fq9suIpIWD0OsnISlw==, registry: http://112.90.157.23/, tarball: https://miniapp.10jqka.com.cn/npmserver/find-up/-/find-up-4.1.0.tgz}
+    name: find-up
+    version: 4.1.0
+    engines: {node: '>=8'}
+    dependencies:
+      locate-path: miniapp.10jqka.com.cn/locate-path@5.0.0
+      path-exists: miniapp.10jqka.com.cn/path-exists@4.0.0
+    dev: true
+
+  miniapp.10jqka.com.cn/find-up@6.3.0:
+    resolution: {integrity: sha512-v2ZsoEuVHYy8ZIlYqwPe/39Cy+cFDzp4dXPaxNvkEuouymu+2Jbz0PxpKarJHYJTmv2HWT3O382qY8l4jMWthw==, registry: http://112.90.157.23/, tarball: https://miniapp.10jqka.com.cn/npmserver/find-up/-/find-up-6.3.0.tgz}
+    name: find-up
+    version: 6.3.0
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      locate-path: miniapp.10jqka.com.cn/locate-path@7.2.0
+      path-exists: miniapp.10jqka.com.cn/path-exists@5.0.0
+    dev: false
+
   miniapp.10jqka.com.cn/foreground-child@3.1.1:
     resolution: {integrity: sha512-TMKDUnIte6bfb5nWv7V/caI169OHgvwjb7V4WkeUvbQQdjr5rWKqHFiKWb/fcOwB+CzBT+qbWjvj+DVwRskpIg==, registry: http://112.90.157.23/, tarball: https://miniapp.10jqka.com.cn/npmserver/foreground-child/-/foreground-child-3.1.1.tgz}
     name: foreground-child
@@ -4642,6 +4636,36 @@ packages:
       '@pkgjs/parseargs': miniapp.10jqka.com.cn/@pkgjs/parseargs@0.11.0
     dev: false
 
+  miniapp.10jqka.com.cn/locate-path@5.0.0:
+    resolution: {integrity: sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==, registry: http://112.90.157.23/, tarball: https://miniapp.10jqka.com.cn/npmserver/locate-path/-/locate-path-5.0.0.tgz}
+    name: locate-path
+    version: 5.0.0
+    engines: {node: '>=8'}
+    dependencies:
+      p-locate: miniapp.10jqka.com.cn/p-locate@4.1.0
+    dev: true
+
+  miniapp.10jqka.com.cn/locate-path@7.2.0:
+    resolution: {integrity: sha512-gvVijfZvn7R+2qyPX8mAuKcFGDf6Nc61GdvGafQsHL0sBIxfKzA+usWn4GFC/bk+QdwPUD4kWFJLhElipq+0VA==, registry: http://112.90.157.23/, tarball: https://miniapp.10jqka.com.cn/npmserver/locate-path/-/locate-path-7.2.0.tgz}
+    name: locate-path
+    version: 7.2.0
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      p-locate: miniapp.10jqka.com.cn/p-locate@6.0.0
+    dev: false
+
+  miniapp.10jqka.com.cn/lodash-es@4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==, registry: http://112.90.157.23/, tarball: https://miniapp.10jqka.com.cn/npmserver/lodash-es/-/lodash-es-4.17.21.tgz}
+    name: lodash-es
+    version: 4.17.21
+    dev: false
+
+  miniapp.10jqka.com.cn/lodash@4.17.21:
+    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==, registry: http://112.90.157.23/, tarball: https://miniapp.10jqka.com.cn/npmserver/lodash/-/lodash-4.17.21.tgz}
+    name: lodash
+    version: 4.17.21
+    dev: true
+
   miniapp.10jqka.com.cn/lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==, registry: http://112.90.157.23/, tarball: https://miniapp.10jqka.com.cn/npmserver/lru-cache/-/lru-cache-5.1.1.tgz}
     name: lru-cache
@@ -4706,6 +4730,65 @@ packages:
     engines: {node: '>=8'}
     dev: false
 
+  miniapp.10jqka.com.cn/p-limit@2.3.0:
+    resolution: {integrity: sha512-//88mFWSJx8lxCzwdAABTJL2MyWB12+eIY7MDL2SqLmAkeKU9qxRvWuSyTjm3FUmpBEMuFfckAIqEaVGUDxb6w==, registry: http://112.90.157.23/, tarball: https://miniapp.10jqka.com.cn/npmserver/p-limit/-/p-limit-2.3.0.tgz}
+    name: p-limit
+    version: 2.3.0
+    engines: {node: '>=6'}
+    dependencies:
+      p-try: 2.2.0
+    dev: true
+
+  miniapp.10jqka.com.cn/p-limit@4.0.0:
+    resolution: {integrity: sha512-5b0R4txpzjPWVw/cXXUResoD4hb6U/x9BH08L7nw+GN1sezDzPdxeRvpc9c433fZhBan/wusjbCsqwqm4EIBIQ==, registry: http://112.90.157.23/, tarball: https://miniapp.10jqka.com.cn/npmserver/p-limit/-/p-limit-4.0.0.tgz}
+    name: p-limit
+    version: 4.0.0
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      yocto-queue: miniapp.10jqka.com.cn/yocto-queue@1.0.0
+    dev: false
+
+  miniapp.10jqka.com.cn/p-locate@4.1.0:
+    resolution: {integrity: sha512-R79ZZ/0wAxKGu3oYMlz8jy/kbhsNrS7SKZ7PxEHBgJ5+F2mtFW2fK2cOtBh1cHYkQsbzFV7I+EoRKe6Yt0oK7A==, registry: http://112.90.157.23/, tarball: https://miniapp.10jqka.com.cn/npmserver/p-locate/-/p-locate-4.1.0.tgz}
+    name: p-locate
+    version: 4.1.0
+    engines: {node: '>=8'}
+    dependencies:
+      p-limit: miniapp.10jqka.com.cn/p-limit@2.3.0
+    dev: true
+
+  miniapp.10jqka.com.cn/p-locate@5.0.0:
+    resolution: {integrity: sha512-LaNjtRWUBY++zB5nE/NwcaoMylSPk+S+ZHNB1TzdbMJMny6dynpAGt7X/tl/QYq3TIeE6nxHppbo2LGymrG5Pw==, registry: http://112.90.157.23/, tarball: https://miniapp.10jqka.com.cn/npmserver/p-locate/-/p-locate-5.0.0.tgz}
+    name: p-locate
+    version: 5.0.0
+    engines: {node: '>=10'}
+    dependencies:
+      p-limit: 3.1.0
+    dev: true
+
+  miniapp.10jqka.com.cn/p-locate@6.0.0:
+    resolution: {integrity: sha512-wPrq66Llhl7/4AGC6I+cqxT07LhXvWL08LNXz1fENOw0Ap4sRZZ/gZpTTJ5jpurzzzfS2W/Ge9BY3LgLjCShcw==, registry: http://112.90.157.23/, tarball: https://miniapp.10jqka.com.cn/npmserver/p-locate/-/p-locate-6.0.0.tgz}
+    name: p-locate
+    version: 6.0.0
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      p-limit: miniapp.10jqka.com.cn/p-limit@4.0.0
+    dev: false
+
+  miniapp.10jqka.com.cn/path-exists@4.0.0:
+    resolution: {integrity: sha512-ak9Qy5Q7jYb2Wwcey5Fpvg2KoAc/ZIhLSLOSBmRmygPsGwkVVt0fZa0qrtMz+m6tJTAHfZQ8FnmB4MG4LWy7/w==, registry: http://112.90.157.23/, tarball: https://miniapp.10jqka.com.cn/npmserver/path-exists/-/path-exists-4.0.0.tgz}
+    name: path-exists
+    version: 4.0.0
+    engines: {node: '>=8'}
+    dev: true
+
+  miniapp.10jqka.com.cn/path-exists@5.0.0:
+    resolution: {integrity: sha512-RjhtfwJOxzcFmNOi6ltcbcu4Iu+FL3zEj83dk4kAS+fVpTxXLO1b38RvJgT/0QwvV/L3aY9TAnyv0EOqW4GoMQ==, registry: http://112.90.157.23/, tarball: https://miniapp.10jqka.com.cn/npmserver/path-exists/-/path-exists-5.0.0.tgz}
+    name: path-exists
+    version: 5.0.0
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dev: false
+
   miniapp.10jqka.com.cn/path-key@3.1.1:
     resolution: {integrity: sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==, registry: http://112.90.157.23/, tarball: https://miniapp.10jqka.com.cn/npmserver/path-key/-/path-key-3.1.1.tgz}
     name: path-key
@@ -4728,6 +4811,15 @@ packages:
     dependencies:
       lru-cache: miniapp.10jqka.com.cn/lru-cache@9.1.1
       minipass: miniapp.10jqka.com.cn/minipass@5.0.0
+    dev: false
+
+  miniapp.10jqka.com.cn/pkg-dir@7.0.0:
+    resolution: {integrity: sha512-Ie9z/WINcxxLp27BKOCHGde4ITq9UklYKDzVo1nhk5sqGEXU3FpkwP5GM2voTGJkGd9B3Otl+Q4uwSOeSUtOBA==, registry: http://112.90.157.23/, tarball: https://miniapp.10jqka.com.cn/npmserver/pkg-dir/-/pkg-dir-7.0.0.tgz}
+    name: pkg-dir
+    version: 7.0.0
+    engines: {node: '>=14.16'}
+    dependencies:
+      find-up: miniapp.10jqka.com.cn/find-up@6.3.0
     dev: false
 
   miniapp.10jqka.com.cn/shebang-command@2.0.0:
@@ -4838,3 +4930,16 @@ packages:
       string-width: miniapp.10jqka.com.cn/string-width@5.1.2
       strip-ansi: miniapp.10jqka.com.cn/strip-ansi@7.0.1
     dev: false
+
+  miniapp.10jqka.com.cn/yocto-queue@0.1.0:
+    resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==, registry: http://112.90.157.23/, tarball: https://miniapp.10jqka.com.cn/npmserver/yocto-queue/-/yocto-queue-0.1.0.tgz}
+    name: yocto-queue
+    version: 0.1.0
+    engines: {node: '>=10'}
+    dev: true
+
+  miniapp.10jqka.com.cn/yocto-queue@1.0.0:
+    resolution: {integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==, registry: http://112.90.157.23/, tarball: https://miniapp.10jqka.com.cn/npmserver/yocto-queue/-/yocto-queue-1.0.0.tgz}
+    name: yocto-queue
+    version: 1.0.0
+    engines: {node: '>=12.20'}
