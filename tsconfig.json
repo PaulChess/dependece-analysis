@@ -3,7 +3,6 @@
     "target": "es2018",
     "module": "esnext",
     "lib": ["esnext"],
-    "allowJs": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "strict": true,
