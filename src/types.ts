@@ -17,6 +17,10 @@ export interface ComponentData {
   librariyInfoList: LibraryInfoItem[]
 }
 
+export interface CodeAnalysisOptions {
+  libraryName: string
+}
+
 export interface NodeInfo {
   name: string
   origin: string | null

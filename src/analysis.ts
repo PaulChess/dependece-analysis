@@ -6,7 +6,13 @@ import { parseTs } from './parser'
 import type { ImportItems, NodeInfo } from './types'
 
 export class CodeAnalysis {
-  constructor() {}
+  private _libraryName: string
+
+  constructor(options: {
+    libraryName: string
+  }) {
+    this._libraryName = options.libraryName
+  }
 
   _findImportItems(ast: SourceFile, baseLine = 0) {
     const importItems: ImportItems = {}
@@ -22,13 +28,13 @@ export class CodeAnalysis {
       }
     }
 
-    function walk(node: Node) {
+    const walk = (node: Node) => {
       tsCompiler.forEachChild(node, walk)
       const line = ast.getLineAndCharacterOfPosition(node.getStart()).line + baseLine + 1
 
       if (tsCompiler.isImportDeclaration(node)) {
         // 命中target
-        if (isTargetLib(node)) {
+        if (isTargetLib(node, this._libraryName)) {
           // 存在导入项
           if (node.importClause) {
             // default 直接导入场景
@@ -110,29 +116,33 @@ export class CodeAnalysis {
 
     Object.keys(componentItems).forEach((key) => {
       if (useCallsList.includes(key))
-        realUsedComponentsList.push(key)
+        realUsedComponentsList.push(`${this._libraryName}~${key}`)
     })
 
     return realUsedComponentsList
   }
 
-  analysis() {
-    const tartgetAnalysisFile = scanFileTs('example/src/main.ts')
+  async analysis(): Promise<string[]> {
+    return new Promise((resolve) => {
+      const tartgetAnalysisFile = scanFileTs('example/src/main.ts')
 
-    if (isTrueArray(tartgetAnalysisFile)) {
-      tartgetAnalysisFile.forEach((file) => {
-        const { ast } = parseTs(file)
+      if (isTrueArray(tartgetAnalysisFile)) {
+        tartgetAnalysisFile.forEach((file) => {
+          const { ast } = parseTs(file)
 
-        if (ast) {
-          const importItems = this._findImportItems(ast)
+          if (ast) {
+            const importItems = this._findImportItems(ast)
 
-          if (Object.keys(importItems).length > 0) {
-            const useCallsList = this._getUseCallsList(ast)
-            const realUsedComponentList = this._getRealUsedComponentsList(importItems, useCallsList)
-            // console.log(realUsedComponentList)
+            if (Object.keys(importItems).length > 0) {
+              const useCallsList = this._getUseCallsList(ast)
+              const realUsedComponentList = this._getRealUsedComponentsList(importItems, useCallsList)
+              resolve(realUsedComponentList)
+            }
           }
-        }
-      })
-    }
+        })
+      }
+
+      resolve([])
+    })
   }
 }

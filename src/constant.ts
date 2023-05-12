@@ -1,3 +1,5 @@
+export const NEED_DEEP_ANALYSIS_LIB = ['@atom/atom-ui']
+
 // 代码文件类型(ts包含tsx)
 export const CODE_FILE_TYPE = {
   TS: 'ts',

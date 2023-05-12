@@ -1,8 +1,9 @@
-// import { CodeAnalysis } from './analysis'
 import { isPlainObject } from 'lodash-es'
 import { findPackageJsonPath, readPackageJson } from './package-json'
 import { isTrueArray } from './utils'
-import type { ComponentData } from './types'
+import type { ComponentData, LibraryInfoItem } from './types'
+import { NEED_DEEP_ANALYSIS_LIB } from './constant'
+import { CodeAnalysis } from './analysis'
 
 const componentsData: ComponentData = {
   projectRepo: '',
@@ -20,12 +21,14 @@ function getAtomPrefixDependencies(dependecies: Record<string, string>) {
   const atomPrefixDependencies: {
     libraryName: string
     version: string
+    needDeepAnalysis: boolean
   }[] = []
-  Object.keys(dependecies).forEach((dependence) => {
-    if (dependence.startsWith('@atom/')) {
+  Object.keys(dependecies).forEach((dependenceName) => {
+    if (dependenceName.startsWith('@atom/')) {
       atomPrefixDependencies.push({
-        libraryName: dependence,
-        version: dependecies[dependence],
+        libraryName: dependenceName,
+        version: dependecies[dependenceName],
+        needDeepAnalysis: NEED_DEEP_ANALYSIS_LIB.includes(dependenceName),
       })
     }
   })
@@ -44,23 +47,38 @@ async function init() {
       if (isPlainObject(dependencies) && Object.keys(dependencies).length > 0) {
         const atomPrefixDependencies = getAtomPrefixDependencies(dependencies)
         if (isTrueArray(atomPrefixDependencies)) {
-          atomPrefixDependencies.forEach((atomPrefixDependence) => {
-            componentsData.librariyInfoList.push({
+          atomPrefixDependencies.forEach(async (atomPrefixDependence) => {
+            const libraryInfo: LibraryInfoItem = {
               libraryName: atomPrefixDependence.libraryName,
               version: atomPrefixDependence.version,
               components: [],
-              usages: 0,
-            })
+            }
+            if (atomPrefixDependence.needDeepAnalysis) {
+              const codeAnalysis = new CodeAnalysis({
+                libraryName: atomPrefixDependence.libraryName,
+              })
+              const usedComponents = await codeAnalysis.analysis()
+
+              if (isTrueArray(usedComponents)) {
+                usedComponents.forEach((item, index) => {
+                  libraryInfo.components.splice(index, 0, {
+                    componentName: item,
+                    usages: 0,
+                  })
+                })
+              }
+            }
+            else {
+              libraryInfo.usages = 0
+            }
+
+            componentsData.librariyInfoList.push(libraryInfo)
+            // console.log(componentsData)
           })
         }
       }
     }
   }
-  // console.log(componentsData)
 }
 
 init()
-
-// const codeAnalysis = new CodeAnalysis()
-
-// codeAnalysis.analysis()
